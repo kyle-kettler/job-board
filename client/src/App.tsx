@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import NavBar from './components/NavBar';
 
 export default function App() {
   const [serverData, setServerData] = useState('');
@@ -19,11 +20,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="text-3xl font-bold underline">{serverData}</h1>
-      </header>
+    <div>
+      <NavBar />
     </div>
   );
 }
