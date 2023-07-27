@@ -10,7 +10,7 @@
     }
   },
   "scripts": {
-    "start": "NODE_ENV=production node server/server.ts",
+    "start": "NODE_ENV=production ts-node server/server.ts",
     "build": "npm run build --prefix client",
     "db:import": "sh database/import.sh",
     "dev:db": "pgweb --db=`awk 'BEGIN { FS = \"/\" } ; /DATABASE_URL=/ {print $NF}' server/.env`",
