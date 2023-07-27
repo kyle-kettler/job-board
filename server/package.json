@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "main": "server.js",
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node-esm"
+    }
+  },
   "scripts": {
     "start": "ts-node-esm server.ts",
     "dev": "nodemon server.ts"
