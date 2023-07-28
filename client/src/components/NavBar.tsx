@@ -7,7 +7,9 @@ export default function NavBar() {
       <nav className="container-xl px-4 py-4">
         <div className="flex content-center justify-between">
           <div>
-            <Logo width="160" height="auto" />
+            <Link to="/">
+              <Logo width="160" height="auto" />
+            </Link>
           </div>
           <ul className="flex items-center gap-4">
             <li>

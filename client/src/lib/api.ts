@@ -9,6 +9,7 @@ export type Job = {
   level: string;
   location: string;
   active: boolean;
+  dateAdded: string;
 };
 
 /**

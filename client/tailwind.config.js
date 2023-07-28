@@ -7,6 +7,9 @@ module.exports = {
         'orange-500': '#E85253',
         'orange-600': '#D1393F',
       },
+      maxWidth: {
+        152: '38rem',
+      },
     },
   },
   plugins: [],

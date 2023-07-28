@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
+import Jobs from './pages/Jobs';
 
 export default function App() {
   const [serverData, setServerData] = useState('');
@@ -21,7 +22,11 @@ export default function App() {
 
   return (
     <div>
-      <NavBar />
+      <Routes>
+        <Route path="/" element={<NavBar />}>
+          <Route index element={<Jobs />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
