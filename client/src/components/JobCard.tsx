@@ -23,7 +23,7 @@ export default function JobCard({ job }: CardProps) {
   return (
     <Link
       to={`/jobs/${jobId}`}
-      className="w-full max-w-152 border-2 p-3 rounded-xl hover:shadow-md transition-shadow duration-300">
+      className="w-full max-w-152 border-[1.5px] p-3 rounded-xl hover:shadow-md transition-shadow duration-300">
       <div className="flex justify-between mb-8">
         <div className="flex gap-3">
           <img
