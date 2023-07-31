@@ -1,8 +1,8 @@
 export type PaginationProps = {
   itemsPerPage: number;
-  totalItems: number | undefined;
+  totalItems?: number;
   currentPage: number;
-  paginate: (number: number) => void;
+  paginate: (page: number) => void;
 };
 
 export default function Pagination({
@@ -22,14 +22,14 @@ export default function Pagination({
   return (
     <nav className="mt-4 py-2 border-t border-b w-full max-w-152">
       <ul className="flex justify-center gap-2">
-        {pageNumbers.map((number) => (
-          <li key={number}>
+        {pageNumbers.map((page) => (
+          <li key={page}>
             <button
               className={`${
-                currentPage === number ? `bg-stone-100` : ``
+                currentPage === page ? `bg-stone-100` : ``
               } rounded text-sm w-6 h-6 flex justify-center items-center font-light cursor-pointer hover:bg-stone-100 transition-colors`}
-              onClick={() => paginate(number)}>
-              {number}
+              onClick={() => paginate(page)}>
+              {page}
             </button>
           </li>
         ))}
