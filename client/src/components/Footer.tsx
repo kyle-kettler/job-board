@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex content-center justify-between">
           <div>
             <Link to="/">
-              <Logo width="160" height="auto" />
+              <Logo width="160" height="30" />
             </Link>
           </div>
           <div className="flex items-center gap-4">
