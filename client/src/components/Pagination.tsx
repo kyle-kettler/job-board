@@ -24,13 +24,13 @@ export default function Pagination({
       <ul className="flex justify-center gap-2">
         {pageNumbers.map((number) => (
           <li key={number}>
-            <div
+            <button
               className={`${
                 currentPage === number ? `bg-stone-100` : ``
               } rounded text-sm w-6 h-6 flex justify-center items-center font-light cursor-pointer hover:bg-stone-100 transition-colors`}
               onClick={() => paginate(number)}>
               {number}
-            </div>
+            </button>
           </li>
         ))}
       </ul>
