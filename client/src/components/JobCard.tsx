@@ -27,7 +27,7 @@ export default function JobCard({ job }: CardProps) {
       <div className="flex justify-between mb-8">
         <div className="flex gap-3">
           <img
-            className="bg-blue-500 rounded-full w-14 h-14"
+            className="rounded-full w-14 h-14"
             src={companyImgUrl}
             alt={companyName}
           />
