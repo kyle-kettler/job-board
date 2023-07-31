@@ -6,7 +6,7 @@ import Pagination from '../components/Pagination';
 export default function JobList() {
   const [jobs, setJobs] = useState<Job[]>();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 1;
+  const itemsPerPage = 2;
 
   useEffect(() => {
     async function loadJobs() {
