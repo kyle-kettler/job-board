@@ -26,6 +26,18 @@ app.get('/api/hello', (req, res) => {
   res.json({ message: 'Hello, TypeScript!' });
 });
 
+app.get('/api/jobs', async (req, res, next) => {
+  try {
+    const sql = `
+    select * from "jobs";
+    `;
+    const result = await db.query(sql);
+    res.status(201).json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
 /**
  * Serves React's index.html if no api route matches.
  *

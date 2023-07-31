@@ -29,7 +29,7 @@
       100000,
       150000,
       'Mid-Level',
-      'San Fransico',
+      'San Francisco, CA',
       true),
     ('Software Engineer, Product',
       E'We are the teams who create all of Meta''s products used by billions of people around the world. Want to build new features and improve existing products like Messenger, Video, Groups, News Feed, Search and more? Want to solve unique, large scale, highly complex technical problems? Meta is seeking experienced full-stack Software Engineers to join our product teams. You can help build products that help us connect the next billion people, create new features that have billions of interactions per day and be a part of a team that''s working to help people connect with each other around the globe. Join us!\n
