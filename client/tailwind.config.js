@@ -10,6 +10,9 @@ module.exports = {
       maxWidth: {
         152: '38rem',
       },
+      fontFamily: {
+        satoshi: ['Satoshi', 'sans-serif'],
+      },
     },
   },
   plugins: [],

@@ -1,3 +1,5 @@
+export type Level = '' | 'Entry-Level' | 'Mid-Level' | 'Senior' | 'Principal';
+
 export type Job = {
   jobId: number;
   title: string;
@@ -6,7 +8,7 @@ export type Job = {
   companyImgUrl: string;
   salaryFloor: number;
   salaryCeiling: number;
-  level: string;
+  level: Level;
   location: string;
   active: boolean;
   dateAdded: string;

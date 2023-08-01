@@ -4,7 +4,7 @@ import Logo from './Logo';
 export default function NavBar() {
   return (
     <div>
-      <nav className="container-xl px-4 py-4 absolute w-full">
+      <nav className="container-xl px-4 py-4 absolute w-full font-satoshi">
         <div className="flex content-center justify-between">
           <div>
             <Link to="/">
