@@ -1,15 +1,28 @@
-import { useState } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
 
 type FilterProps = {
   onSearchInput: (value: string) => void;
+  onLocationSelect: (value: string) => void;
+  onLevelSelect: (value: string) => void;
+  onSalarySelect: (value: string) => void;
+  onClearFilter: () => void;
+  searchValue: string;
+  locationValue: string;
+  levelValue: string;
+  salaryValue: string;
 };
 
-export default function FilterForm({ onSearchInput }: FilterProps) {
-  const [location, setLocation] = useState('');
-  const [level, setLevel] = useState('');
-  const [salary, setSalary] = useState('');
-
+export default function FilterForm({
+  onSearchInput,
+  onLocationSelect,
+  onLevelSelect,
+  onSalarySelect,
+  onClearFilter,
+  searchValue,
+  locationValue,
+  levelValue,
+  salaryValue,
+}: FilterProps) {
   return (
     <div>
       <div className="flex flex-col gap-3">
@@ -17,18 +30,21 @@ export default function FilterForm({ onSearchInput }: FilterProps) {
           <input
             className="p-4 pl-10 rounded-lg border-[1.5px] w-full"
             placeholder="Job Title or Company"
+            value={searchValue}
             onChange={(e) => onSearchInput(e.currentTarget.value)}
           />
           <SearchIcon className="absolute left-3" color="#989898" />
-          <button className="text-sm text-gray-400 absolute right-4">
+          <button
+            className="text-sm text-gray-400 absolute right-4"
+            onClick={() => onClearFilter()}>
             Clear
           </button>
         </div>
         <div className="w-full flex gap-3">
           <select
             className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500"
-            value={location}
-            onChange={(e) => setLocation(e.currentTarget.value)}>
+            value={locationValue}
+            onChange={(e) => onLocationSelect(e.currentTarget.value)}>
             <option value={''}>Location</option>
             <option value={'San Francisco, CA'}>San Francisco, CA</option>
             <option value={'Bellevue, WA'}>Bellevue, WA</option>
@@ -37,8 +53,8 @@ export default function FilterForm({ onSearchInput }: FilterProps) {
           </select>
           <select
             className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500"
-            value={level}
-            onChange={(e) => setLevel(e.currentTarget.value)}>
+            value={levelValue}
+            onChange={(e) => onLevelSelect(e.currentTarget.value)}>
             <option value={''}>Level</option>
             <option value={'Entry-Level'}>Entry-Level</option>
             <option value={'Mid-Level'}>Mid-Level</option>
@@ -47,13 +63,13 @@ export default function FilterForm({ onSearchInput }: FilterProps) {
           </select>
           <select
             className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500"
-            value={salary}
-            onChange={(e) => setSalary(e.currentTarget.value)}>
+            value={salaryValue}
+            onChange={(e) => onSalarySelect(e.currentTarget.value)}>
             <option value={''}>Salary</option>
-            <option value={'$50,000 - $100,000'}>$50,000 - $100,000</option>
-            <option value={'$101,000 - $150,000'}>$101,000 - $150,000</option>
-            <option value={'$151,000 - $200,000'}>$151,000 - $200,000</option>
-            <option value={'$200,000+'}>$200,000+</option>
+            <option value={50000}>$50,000 - $100,000</option>
+            <option value={101000}>$101,000 - $150,000</option>
+            <option value={151000}>$151,000 - $200,000</option>
+            <option value={200000}>$200,000+</option>
           </select>
         </div>
       </div>

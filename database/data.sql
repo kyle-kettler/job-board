@@ -42,7 +42,7 @@
       100000,
       150000,
       'Mid-Level',
-      'San Fransico',
+      'San Francisco, CA',
       true),
     (
       'Software Engineer, Product',
