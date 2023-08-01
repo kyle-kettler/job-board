@@ -23,7 +23,6 @@ export default function Jobs() {
 
   function handleSalarySelect(salary: string): void {
     setSalary(salary);
-    console.log(salary);
   }
 
   function handleClear() {
@@ -34,7 +33,7 @@ export default function Jobs() {
   }
 
   return (
-    <div>
+    <div className="font-satoshi">
       <section className="bg-stone-200 pt-24 pb-8">
         <div className="w-full max-w-152 mx-auto">
           <div className="text-stone-600">

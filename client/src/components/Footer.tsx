@@ -3,7 +3,7 @@ import Logo from './Logo';
 
 export default function Footer() {
   return (
-    <section className="w-full px-4">
+    <section className="w-full px-4 font-satoshi">
       <footer className="py-4 border-t">
         <div className="flex content-center justify-between">
           <div>

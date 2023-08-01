@@ -35,14 +35,14 @@ export default function FilterForm({
           />
           <SearchIcon className="absolute left-3" color="#989898" />
           <button
-            className="text-sm text-gray-400 absolute right-4"
+            className="text-sm text-gray-400 absolute right-4 hover:text-gray-600 transition-colors"
             onClick={() => onClearFilter()}>
             Clear
           </button>
         </div>
         <div className="w-full flex gap-3">
           <select
-            className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500"
+            className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500 cursor-pointer"
             value={locationValue}
             onChange={(e) => onLocationSelect(e.currentTarget.value)}>
             <option value={''}>Location</option>
@@ -52,7 +52,7 @@ export default function FilterForm({
             <option value={'Remote'}>Remote</option>
           </select>
           <select
-            className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500"
+            className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500 cursor-pointer"
             value={levelValue}
             onChange={(e) => onLevelSelect(e.currentTarget.value)}>
             <option value={''}>Level</option>
@@ -62,7 +62,7 @@ export default function FilterForm({
             <option value={'Principal'}>Principal</option>
           </select>
           <select
-            className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500"
+            className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500 cursor-pointer"
             value={salaryValue}
             onChange={(e) => onSalarySelect(e.currentTarget.value)}>
             <option value={''}>Salary</option>
