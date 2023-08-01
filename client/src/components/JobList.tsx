@@ -56,9 +56,6 @@ export default function JobList({
 
   /**
    * This block filters the jobs list based on the inputs from FilterForm.tsx
-   * There is a ternary for each input field.
-   * Salary ternary handles the number to string comparison;
-   *   The select options for salary increments by 50000, hence line 55
    */
   const filteredJobs = jobs.filter(
     (item) =>
