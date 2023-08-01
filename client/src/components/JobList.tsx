@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react';
-import { fetchJobs, Job } from '../lib';
+import { fetchJobs, Job, Level } from '../lib';
+import {
+  matchesSearch,
+  matchesLocation,
+  matchesLevel,
+  matchesSalary,
+} from '../lib/filters';
 import JobCard from '../components/JobCard';
 import Pagination from '../components/Pagination';
 
 type JobListProps = {
   searchInput: string;
   locationSelect: string;
-  levelSelect: string;
-  salarySelect: string;
+  levelSelect: Level;
+  salarySelect: number;
 };
 
 export default function JobList({
@@ -16,25 +22,37 @@ export default function JobList({
   levelSelect,
   salarySelect,
 }: JobListProps) {
+  const [isLoading, setIsLoading] = useState<boolean>();
   const [jobs, setJobs] = useState<Job[]>();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 2;
 
-  /**
-   * loading jobs from database on first render
-   * fetchJobs() is at lib/api.ts
-   */
   useEffect(() => {
     async function loadJobs() {
+      setIsLoading(true);
       try {
         const jobs = await fetchJobs();
         setJobs(jobs);
       } catch (err) {
         console.error(err);
+      } finally {
+        setIsLoading(false);
       }
     }
-    loadJobs();
-  }, []);
+    if (isLoading === undefined) loadJobs();
+  }, [isLoading]);
+
+  if (!jobs) {
+    return (
+      <section className="py-8">
+        <div className="container mx-auto">
+          <div className="flex flex-col items-center gap-4">
+            <p>Loading jobs...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   /**
    * This block filters the jobs list based on the inputs from FilterForm.tsx
@@ -42,18 +60,12 @@ export default function JobList({
    * Salary ternary handles the number to string comparison;
    *   The select options for salary increments by 50000, hence line 55
    */
-  const filteredJobs = jobs?.filter(
+  const filteredJobs = jobs.filter(
     (item) =>
-      (searchInput
-        ? item.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-          item.companyName.toLowerCase().includes(searchInput.toLowerCase())
-        : true) &&
-      (locationSelect ? item.location === locationSelect : true) &&
-      (levelSelect ? item.level === levelSelect : true) &&
-      (salarySelect
-        ? item.salaryFloor >= Number(salarySelect) &&
-          item.salaryFloor < Number(salarySelect) + 50000
-        : true)
+      matchesSearch(searchInput, item) &&
+      matchesLocation(locationSelect, item) &&
+      matchesLevel(levelSelect, item) &&
+      matchesSalary(salarySelect, item)
   );
 
   /**
@@ -62,10 +74,22 @@ export default function JobList({
    */
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
-  const currentJobs = filteredJobs?.slice(firstIndex, lastIndex);
+  const currentJobs = filteredJobs.slice(firstIndex, lastIndex);
 
   function handlePaginate(pageNumber: number): void {
     setCurrentPage(pageNumber);
+  }
+
+  if (!jobs) {
+    return (
+      <section className="py-8">
+        <div className="container mx-auto">
+          <div className="flex flex-col items-center gap-4">
+            <p>Loading jobs...</p>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   // Showing a message if the users search doesn't yield results

@@ -1,15 +1,16 @@
 import { Search as SearchIcon } from 'lucide-react';
+import { Level } from '../lib';
 
 type FilterProps = {
   onSearchInput: (value: string) => void;
   onLocationSelect: (value: string) => void;
-  onLevelSelect: (value: string) => void;
-  onSalarySelect: (value: string) => void;
+  onLevelSelect: (value: Level) => void;
+  onSalarySelect: (value: number) => void;
   onClearFilter: () => void;
   searchValue: string;
   locationValue: string;
   levelValue: string;
-  salaryValue: string;
+  salaryValue: number;
 };
 
 export default function FilterForm({
@@ -54,7 +55,7 @@ export default function FilterForm({
           <select
             className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500 cursor-pointer"
             value={levelValue}
-            onChange={(e) => onLevelSelect(e.currentTarget.value)}>
+            onChange={(e) => onLevelSelect(e.currentTarget.value as Level)}>
             <option value={''}>Level</option>
             <option value={'Entry-Level'}>Entry-Level</option>
             <option value={'Mid-Level'}>Mid-Level</option>
@@ -64,8 +65,8 @@ export default function FilterForm({
           <select
             className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500 cursor-pointer"
             value={salaryValue}
-            onChange={(e) => onSalarySelect(e.currentTarget.value)}>
-            <option value={''}>Salary</option>
+            onChange={(e) => onSalarySelect(Number(e.currentTarget.value))}>
+            <option value={0}>Salary</option>
             <option value={50000}>$50,000 - $100,000</option>
             <option value={101000}>$101,000 - $150,000</option>
             <option value={151000}>$151,000 - $200,000</option>

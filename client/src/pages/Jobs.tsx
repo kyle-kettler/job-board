@@ -2,12 +2,13 @@ import { useState } from 'react';
 import FilterForm from '../components/FilterForm';
 import Footer from '../components/Footer';
 import JobList from '../components/JobList';
+import { Level } from '../lib';
 
 export default function Jobs() {
   const [search, setSearch] = useState('');
   const [location, setLocation] = useState('');
-  const [level, setLevel] = useState('');
-  const [salary, setSalary] = useState('');
+  const [level, setLevel] = useState<Level>('');
+  const [salary, setSalary] = useState(0);
 
   function handleSearch(searchInput: string): void {
     setSearch(searchInput);
@@ -17,11 +18,11 @@ export default function Jobs() {
     setLocation(location);
   }
 
-  function handleLevelSelect(level: string): void {
+  function handleLevelSelect(level: Level): void {
     setLevel(level);
   }
 
-  function handleSalarySelect(salary: string): void {
+  function handleSalarySelect(salary: number): void {
     setSalary(salary);
   }
 
@@ -29,7 +30,7 @@ export default function Jobs() {
     setSearch('');
     setLocation('');
     setLevel('');
-    setSalary('');
+    setSalary(0);
   }
 
   return (
