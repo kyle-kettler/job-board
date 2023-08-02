@@ -25,7 +25,7 @@ export default function JobList({
   const [isLoading, setIsLoading] = useState<boolean>();
   const [jobs, setJobs] = useState<Job[]>();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2;
+  const itemsPerPage = 10;
 
   useEffect(() => {
     async function loadJobs() {

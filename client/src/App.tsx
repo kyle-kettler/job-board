@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
+import JobDetails from './pages/JobDetails';
 import Jobs from './pages/Jobs';
 
 export default function App() {
@@ -9,6 +10,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route index element={<Jobs />} />
+          <Route path="/jobs/:jobId" element={<JobDetails />} />
         </Route>
       </Routes>
     </div>

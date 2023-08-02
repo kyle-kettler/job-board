@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import errorMiddleware from './lib/error-middleware.js';
 import pg from 'pg';
+import ClientError from './lib/client-error.js';
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -22,10 +23,6 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello, TypeScript!' });
-});
-
 app.get('/api/jobs', async (req, res, next) => {
   try {
     const sql = `
@@ -33,6 +30,25 @@ app.get('/api/jobs', async (req, res, next) => {
     `;
     const result = await db.query(sql);
     res.status(201).json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/jobs/:jobId', async (req, res, next) => {
+  try {
+    const jobId = Number(req.params.jobId);
+    if (!Number.isInteger(jobId))
+      throw new ClientError(400, 'jobId must be a number');
+    const sql = `
+      select * from "jobs"
+      where "jobId" = $1
+      `;
+    const params = [jobId];
+    const result = await db.query(sql, params);
+    const [job] = result.rows;
+    if (!job) throw new ClientError(404, `Job with id ${jobId} not found`);
+    res.status(201).json(job);
   } catch (err) {
     next(err);
   }
