@@ -68,8 +68,8 @@ export default function FilterForm({
             onChange={(e) => onSalarySelect(Number(e.currentTarget.value))}>
             <option value={0}>Salary</option>
             <option value={50000}>$50,000 - $100,000</option>
-            <option value={101000}>$101,000 - $150,000</option>
-            <option value={151000}>$151,000 - $200,000</option>
+            <option value={100000}>$100,000 - $150,000</option>
+            <option value={150000}>$150,000 - $200,000</option>
             <option value={200000}>$200,000+</option>
           </select>
         </div>

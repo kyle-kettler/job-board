@@ -37,7 +37,9 @@ export function matchesLevel(levelSelect: Level, item: Job): boolean {
  */
 export function matchesSalary(salarySelect: number, item: Job): boolean {
   return salarySelect
-    ? item.salaryFloor >= salarySelect &&
-        item.salaryFloor < salarySelect + 50000
+    ? (item.salaryFloor >= salarySelect &&
+        item.salaryFloor <= salarySelect + 50000) ||
+        (item.salaryCeiling > salarySelect &&
+          item.salaryCeiling < salarySelect + 50000)
     : true;
 }
