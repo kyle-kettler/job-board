@@ -7,7 +7,6 @@ type InfoStackProps = {
 
 export default function JobInfoStack({ job }: InfoStackProps) {
   const {
-    jobId,
     title,
     companyName,
     companyImgUrl,
@@ -46,7 +45,7 @@ export default function JobInfoStack({ job }: InfoStackProps) {
         <p className="text-lg">{formatDate(dateAdded)}</p>
       </div>
       <Link to={'/'}>
-        <button className="text-sm py-1 px-3 border-2 border-stone-700 rounded">
+        <button className="text-sm py-1 px-3 border-[1.5px] border-stone-700 rounded hover:bg-stone-300 transition-colors">
           Back to Jobs
         </button>
       </Link>
