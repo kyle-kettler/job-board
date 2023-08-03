@@ -18,7 +18,7 @@ export default function NavBar() {
             <li>
               <Link to="/sign-in">
                 <button className="text-base  px-3 border-[1.5px] border-stone-700 rounded hover:bg-stone-300 transition-colors">
-                  Sign In
+                  Log In
                 </button>
               </Link>
             </li>
