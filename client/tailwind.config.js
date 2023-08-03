@@ -9,11 +9,12 @@ module.exports = {
       },
       maxWidth: {
         152: '38rem',
+        208: '52rem',
       },
       fontFamily: {
         satoshi: ['Satoshi', 'sans-serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

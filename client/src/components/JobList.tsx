@@ -25,7 +25,7 @@ export default function JobList({
   const [isLoading, setIsLoading] = useState<boolean>();
   const [jobs, setJobs] = useState<Job[]>();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2;
+  const itemsPerPage = 10;
 
   useEffect(() => {
     async function loadJobs() {
@@ -46,7 +46,7 @@ export default function JobList({
     return (
       <section className="py-8">
         <div className="container mx-auto">
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-4 h-screen">
             <p>Loading jobs...</p>
           </div>
         </div>
@@ -75,18 +75,6 @@ export default function JobList({
 
   function handlePaginate(pageNumber: number): void {
     setCurrentPage(pageNumber);
-  }
-
-  if (!jobs) {
-    return (
-      <section className="py-8">
-        <div className="container mx-auto">
-          <div className="flex flex-col items-center gap-4">
-            <p>Loading jobs...</p>
-          </div>
-        </div>
-      </section>
-    );
   }
 
   // Showing a message if the users search doesn't yield results
