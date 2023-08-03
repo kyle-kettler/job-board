@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import { useParams } from 'react-router-dom';
 import JobInfoStack from '../components/JobInfoStack';
 import ReactMarkdown from 'react-markdown';
+import Button from '../components/Button';
 
 export default function JobDetails() {
   const { jobId } = useParams();
@@ -63,9 +64,11 @@ export default function JobDetails() {
                 className="prose mb-8"
                 children={job.description}
               />
-              <button className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-8 rounded transition-colors text-base">
-                Apply for this Job
-              </button>
+              <Button
+                type="button"
+                buttonStyle="primary-lg"
+                text="Apply for this Job"
+              />
             </div>
           </div>
         </div>
