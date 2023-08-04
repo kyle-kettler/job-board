@@ -59,16 +59,25 @@ export default function AuthForm({ action, onSignIn }: AuthFormProps) {
       <h1 className="text-2xl">{currentText}</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-start">
         <div className="flex flex-col w-full gap-2">
-          <label className="text-sm">Username</label>
-          <input type="text" name="username" required className="rounded-sm" />
+          <label className="text-sm font-satoshi-md text-stone-600">
+            Username
+          </label>
+          <input
+            type="text"
+            name="username"
+            required
+            className="rounded-sm p-1"
+          />
         </div>
         <div className="flex flex-col w-full gap-2">
-          <label className="text-sm">Password</label>
+          <label className="text-sm font-satoshi-md text-stone-600">
+            Password
+          </label>
           <input
             type="password"
             name="password"
             required
-            className="rounded-sm"
+            className="rounded-sm p-1"
           />
         </div>
         <Button type="submit" buttonStyle="primary" text={buttonText} />

@@ -13,6 +13,8 @@ module.exports = {
       },
       fontFamily: {
         satoshi: ['Satoshi', 'sans-serif'],
+        'satoshi-md': ['Satoshi-Medium', 'sans-serif'],
+        'satoshi-bold': ['Satoshi-Bold', 'sans-serif'],
       },
     },
   },
