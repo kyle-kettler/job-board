@@ -40,8 +40,6 @@ CREATE TABLE "public"."users" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL,
 	"hashedPassword" TEXT NOT NULL,
-	"firstName" TEXT NOT NULL,
-	"isCompany" BOOLEAN NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE

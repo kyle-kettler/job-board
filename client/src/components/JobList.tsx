@@ -23,6 +23,7 @@ export default function JobList({
   salarySelect,
 }: JobListProps) {
   const [isLoading, setIsLoading] = useState<boolean>();
+  const [error, setError] = useState<unknown>();
   const [jobs, setJobs] = useState<Job[]>();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -34,7 +35,7 @@ export default function JobList({
         const jobs = await fetchJobs();
         setJobs(jobs);
       } catch (err) {
-        console.error(err);
+        setError(err);
       } finally {
         setIsLoading(false);
       }
@@ -103,6 +104,16 @@ export default function JobList({
             paginate={handlePaginate}
             currentPage={currentPage}
           />
+          <>
+            {error && (
+              <div style={{ color: 'red' }}>
+                <p>
+                  Error:{' '}
+                  {error instanceof Error ? error.message : 'Unknown Error'}
+                </p>
+              </div>
+            )}
+          </>
         </div>
       </div>
     </section>

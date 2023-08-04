@@ -1,5 +1,6 @@
 import { formatDate, formatSalary, Job } from '../lib';
 import { Link } from 'react-router-dom';
+import Button from './Button';
 
 type InfoStackProps = {
   job: Job;
@@ -44,10 +45,8 @@ export default function JobInfoStack({ job }: InfoStackProps) {
         <p className="text-sm">Date Posted</p>
         <p className="text-lg">{formatDate(dateAdded)}</p>
       </div>
-      <Link to={'/'}>
-        <button className="text-sm py-1 px-3 border-[1.5px] border-stone-700 rounded hover:bg-stone-300 transition-colors">
-          Back to Jobs
-        </button>
+      <Link to={'/jobs'}>
+        <Button type="button" buttonStyle={'secondary'} text="Back to Jobs" />
       </Link>
     </div>
   );
