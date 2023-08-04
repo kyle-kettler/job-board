@@ -45,7 +45,7 @@ export default function JobInfoStack({ job }: InfoStackProps) {
         <p className="text-sm">Date Posted</p>
         <p className="text-lg">{formatDate(dateAdded)}</p>
       </div>
-      <Link to={'/'}>
+      <Link to={'/jobs'}>
         <Button type="button" buttonStyle={'secondary'} text="Back to Jobs" />
       </Link>
     </div>

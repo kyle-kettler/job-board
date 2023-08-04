@@ -6,8 +6,8 @@ import AppContext from './AppContext';
 export default function NavBar() {
   const { user, handleSignOut } = useContext(AppContext);
   return (
-    <div>
-      <nav className="container-xl px-4 py-4 absolute w-full font-satoshi">
+    <div className="2xl:container mx-auto relative">
+      <nav className="px-8 py-4 absolute w-full font-satoshi">
         <div className="flex content-center justify-between">
           <div>
             <Link to="/">

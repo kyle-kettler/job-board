@@ -4,16 +4,16 @@ import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div className="font-satoshi">
-      <section className="pt-24 h-screen">
-        <div className="w-full max-w-208 mx-auto">
-          <h1 className="text-6xl font-satoshi-bold mb-1 tracking-tighter">
+    <div className="font-satoshi h-screen flex flex-col justify-between">
+      <section className="pt-24 px-8">
+        <div className="pt-8">
+          <h1 className="text-6xl font-satoshi-bold mb-4 tracking-tighter max-w-164">
             Find a job where you can design and write code.
           </h1>
-          <p>
+          <h2 className="text-lg">
             Design-focused software engineering jobs at design-mature tech
             companies.
-          </p>
+          </h2>
           <div className="flex gap-4 mt-8">
             <Link to="/jobs">
               <Button

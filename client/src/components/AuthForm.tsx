@@ -84,7 +84,10 @@ export default function AuthForm({ action, onSignIn }: AuthFormProps) {
         <>
           {error && (
             <div style={{ color: 'red' }}>
-              Error: {error instanceof Error ? error.message : 'Unknown Error'}
+              <p>
+                Error:{' '}
+                {error instanceof Error ? error.message : 'Unknown Error'}
+              </p>
             </div>
           )}
         </>
