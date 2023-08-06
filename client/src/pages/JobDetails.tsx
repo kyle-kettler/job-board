@@ -66,12 +66,12 @@ export default function JobDetails() {
               <Tabs
                 selectedIndex={tabIndex}
                 onSelect={(index) => setTabIndex(index)}
-                selectedTabClassName="text-orange-500 border-orange-500">
+                selectedTabClassName="border-orange-500">
                 <TabList className="flex gap-5 mb-4">
-                  <Tab className="text-stone-500 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
+                  <Tab className="text-stone-600 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
                     Overview
                   </Tab>
-                  <Tab className="text-stone-500 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
+                  <Tab className="text-stone-600 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
                     Application
                   </Tab>
                 </TabList>
@@ -84,6 +84,10 @@ export default function JobDetails() {
                     type="button"
                     buttonStyle="primary-lg"
                     text="Apply for this Job"
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      setTabIndex(1);
+                    }}
                   />
                 </TabPanel>
                 <TabPanel>
