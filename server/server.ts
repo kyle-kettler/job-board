@@ -1,8 +1,9 @@
 import 'dotenv/config';
 import express from 'express';
 import errorMiddleware from './lib/error-middleware.js';
-import pg from 'pg';
 import ClientError from './lib/client-error.js';
+import uploadsMiddleware from './lib/uploads-middleware.js';
+import pg from 'pg';
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 
@@ -104,6 +105,61 @@ app.get('/api/jobs/:jobId', async (req, res, next) => {
     next(err);
   }
 });
+
+app.post(
+  '/api/applications',
+  uploadsMiddleware.single('file'),
+  async (req, res, next) => {
+    try {
+      if (!req.file) throw new ClientError(400, 'no file field in request');
+      const {
+        userId,
+        jobId,
+        name,
+        email,
+        phone,
+        porfolioUrl,
+        githubUrl,
+        proud,
+        interesting,
+      } = req.body;
+      if (
+        !name ||
+        !email ||
+        !phone ||
+        !porfolioUrl ||
+        !githubUrl ||
+        !proud ||
+        !interesting
+      ) {
+        throw new ClientError(400, 'missing required fields');
+      }
+      const resumeUrl = `/uploads/${req.file.filename}`;
+      const sql = `
+      insert into "applications" ("userId", "jobId", "fullName", "email", "phone", "resumeUrl", "portfolioUrl", "githubUrl", "proudOfWork", "interestingThing")
+      values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      returning *
+    `;
+      const params = [
+        userId,
+        jobId,
+        name,
+        email,
+        phone,
+        resumeUrl,
+        porfolioUrl,
+        githubUrl,
+        proud,
+        interesting,
+      ];
+      const result = await db.query(sql, params);
+      const [app] = result.rows;
+      res.status(201).json(app);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 /**
  * Serves React's index.html if no api route matches.

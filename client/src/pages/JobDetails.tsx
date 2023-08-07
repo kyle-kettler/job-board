@@ -91,7 +91,7 @@ export default function JobDetails() {
                   />
                 </TabPanel>
                 <TabPanel>
-                  <ApplicationForm />
+                  <ApplicationForm job={job} />
                 </TabPanel>
               </Tabs>
             </div>

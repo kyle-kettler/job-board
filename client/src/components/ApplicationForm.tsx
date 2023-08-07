@@ -1,11 +1,21 @@
+import { useContext } from 'react';
+import { Job } from '../lib';
 import Button from './Button';
+import AppContext from './AppContext';
 
-export default function ApplicationForm() {
+type ApplicationFormProps = {
+  job: Job;
+};
+
+export default function ApplicationForm({ job }: ApplicationFormProps) {
+  const { user } = useContext(AppContext);
   const inputClasses =
-    'rounded-lg p-2 bg-transparent border-[1.5px] border-stone-500 w-full';
+    'rounded-lg p-2 bg-transparent border-[1.5px] border-stone-500 w-full mt-1';
 
   return (
     <form className="flex flex-col gap-4">
+      <input name="user" type="text" hidden value={user?.userId} />
+      <input name="user" type="text" hidden value={job.jobId} />
       <div>
         <label className="text-sm font-satoshi-md" htmlFor="full-name">
           Full Name *
@@ -28,13 +38,12 @@ export default function ApplicationForm() {
         <label
           className="text-sm font-satoshi-md"
           htmlFor="resume-cover-letter">
-          Resume and Cover Letter *
+          Resume *
         </label>
         <input
           name="resume-cover-letter"
           type="file"
           accept=".pdf"
-          multiple
           className={`${inputClasses} border-dashed`}
         />
       </div>
