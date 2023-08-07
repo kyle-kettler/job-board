@@ -9,8 +9,6 @@ type ApplicationFormProps = {
 
 export default function ApplicationForm({ job }: ApplicationFormProps) {
   const { user } = useContext(AppContext);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const inputClasses =
@@ -43,25 +41,13 @@ export default function ApplicationForm({ job }: ApplicationFormProps) {
             <label className="text-sm font-satoshi-md" htmlFor="name">
               Full Name *
             </label>
-            <input
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              name="name"
-              type="text"
-              className={inputClasses}
-            />
+            <input name="name" type="text" className={inputClasses} />
           </div>
           <div>
             <label className="text-sm font-satoshi-md" htmlFor="email">
               Email *
             </label>
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              type="email"
-              name="email"
-              className={inputClasses}
-            />
+            <input type="email" name="email" className={inputClasses} />
           </div>
           <div>
             <label className="text-sm font-satoshi-md" htmlFor="phone">
