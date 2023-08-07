@@ -14,6 +14,21 @@ export type Job = {
   dateAdded: string;
 };
 
+export type Application = {
+  applicationId: number;
+  jobId: number;
+  userId: number;
+  dateApplied: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  resumeUrl: string;
+  portfolioUrl: string;
+  githubUrl: string;
+  proudOfWork: string;
+  interestingThing: string;
+};
+
 export type User = {
   userId: number;
   username: string;
@@ -80,6 +95,18 @@ export async function fetchJobs(): Promise<Job[]> {
 
 export async function fetchOneJob(jobId: number): Promise<Job> {
   const res = await fetch(`/api/jobs/${jobId}`);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
+export async function submitApplication(
+  formData: FormData
+): Promise<Application> {
+  const req = {
+    method: 'POST',
+    body: formData,
+  };
+  const res = await fetch('/api/applications', req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }

@@ -37,7 +37,7 @@ CREATE TABLE "public"."users" (
 
 
 CREATE TABLE "public"."applications" (
-	"appliedId" serial NOT NULL,
+	"applicationId" serial NOT NULL,
 	"jobId" integer NOT NULL,
 	"userId" integer NOT NULL,
 	"dateApplied" TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -49,7 +49,7 @@ CREATE TABLE "public"."applications" (
 	"githubUrl" TEXT NOT NULL,
 	"proudOfWork" TEXT NOT NULL,
 	"interestingThing" TEXT NOT NULL,
-	CONSTRAINT "applications_pk" PRIMARY KEY ("appliedId")
+	CONSTRAINT "applications_pk" PRIMARY KEY ("applicationId")
 ) WITH (
   OIDS=FALSE
 );

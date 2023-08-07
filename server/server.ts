@@ -108,7 +108,7 @@ app.get('/api/jobs/:jobId', async (req, res, next) => {
 
 app.post(
   '/api/applications',
-  uploadsMiddleware.single('file'),
+  uploadsMiddleware.single('resume'),
   async (req, res, next) => {
     try {
       if (!req.file) throw new ClientError(400, 'no file field in request');
@@ -118,7 +118,7 @@ app.post(
         name,
         email,
         phone,
-        porfolioUrl,
+        portfolioUrl,
         githubUrl,
         proud,
         interesting,
@@ -127,7 +127,7 @@ app.post(
         !name ||
         !email ||
         !phone ||
-        !porfolioUrl ||
+        !portfolioUrl ||
         !githubUrl ||
         !proud ||
         !interesting
@@ -135,6 +135,7 @@ app.post(
         throw new ClientError(400, 'missing required fields');
       }
       const resumeUrl = `/uploads/${req.file.filename}`;
+      console.log(resumeUrl);
       const sql = `
       insert into "applications" ("userId", "jobId", "fullName", "email", "phone", "resumeUrl", "portfolioUrl", "githubUrl", "proudOfWork", "interestingThing")
       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
@@ -147,7 +148,7 @@ app.post(
         email,
         phone,
         resumeUrl,
-        porfolioUrl,
+        portfolioUrl,
         githubUrl,
         proud,
         interesting,

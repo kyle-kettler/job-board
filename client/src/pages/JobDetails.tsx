@@ -66,7 +66,8 @@ export default function JobDetails() {
               <Tabs
                 selectedIndex={tabIndex}
                 onSelect={(index) => setTabIndex(index)}
-                selectedTabClassName="border-orange-500">
+                selectedTabClassName="border-orange-500"
+                className="overflow-visible">
                 <TabList className="flex gap-5 mb-4">
                   <Tab className="text-stone-600 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
                     Overview
