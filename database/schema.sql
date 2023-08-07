@@ -25,17 +25,6 @@ CREATE TABLE "public"."jobs" (
 
 
 
-CREATE TABLE "public"."saved" (
-	"savedId" serial NOT NULL,
-	"jobId" integer NOT NULL,
-	"userId" integer NOT NULL,
-	CONSTRAINT "saved_pk" PRIMARY KEY ("savedId")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "public"."users" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL,
@@ -47,12 +36,20 @@ CREATE TABLE "public"."users" (
 
 
 
-CREATE TABLE "public"."applied" (
-	"appliedId" serial NOT NULL,
+CREATE TABLE "public"."applications" (
+	"applicationId" serial NOT NULL,
 	"jobId" integer NOT NULL,
 	"userId" integer NOT NULL,
 	"dateApplied" TIMESTAMP NOT NULL DEFAULT NOW(),
-	CONSTRAINT "applied_pk" PRIMARY KEY ("appliedId")
+	"fullName" TEXT NOT NULL,
+	"email" TEXT NOT NULL,
+	"phone" TEXT NOT NULL,
+	"resumeUrl" TEXT NOT NULL,
+	"portfolioUrl" TEXT NOT NULL,
+	"githubUrl" TEXT NOT NULL,
+	"proudOfWork" TEXT NOT NULL,
+	"interestingThing" TEXT NOT NULL,
+	CONSTRAINT "applications_pk" PRIMARY KEY ("applicationId")
 ) WITH (
   OIDS=FALSE
 );
@@ -60,9 +57,5 @@ CREATE TABLE "public"."applied" (
 
 
 
-ALTER TABLE "saved" ADD CONSTRAINT "saved_fk0" FOREIGN KEY ("jobId") REFERENCES "jobs"("jobId");
-ALTER TABLE "saved" ADD CONSTRAINT "saved_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
-
-
-ALTER TABLE "applied" ADD CONSTRAINT "applied_fk0" FOREIGN KEY ("jobId") REFERENCES "jobs"("jobId");
-ALTER TABLE "applied" ADD CONSTRAINT "applied_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+ALTER TABLE "applications" ADD CONSTRAINT "applications_fk0" FOREIGN KEY ("jobId") REFERENCES "jobs"("jobId");
+ALTER TABLE "applications" ADD CONSTRAINT "applications_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
