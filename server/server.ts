@@ -6,6 +6,7 @@ import uploadsMiddleware from './lib/uploads-middleware.js';
 import pg from 'pg';
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
+import { authorizationMiddleware } from './lib/authorization-middleware.js';
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -105,6 +106,27 @@ app.get('/api/jobs/:jobId', async (req, res, next) => {
     next(err);
   }
 });
+
+app.get(
+  '/api/applications/:userId',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      const userId = Number(req.params.userId);
+      const sql = `
+      select *
+        from "applications"
+        join "jobs" using ("jobId")
+       where "userId" = $1
+    `;
+      const params = [userId];
+      const result = await db.query(sql, params);
+      res.status(201).json(result.rows);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 app.post(
   '/api/applications',
