@@ -8,6 +8,7 @@ import AuthPage from './pages/AuthPage';
 import './App.css';
 import { Auth, User } from './lib';
 import Home from './pages/Home';
+import MyApplications from './pages/MyApplications';
 
 const tokenKey = 'designengineer';
 
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="jobs/:jobId" element={<JobDetails />} />
           <Route path="/sign-in" element={<AuthPage action="sign-in" />} />
           <Route path="/sign-up" element={<AuthPage action="sign-up" />} />
+          <Route path="/applications" element={<MyApplications />} />
         </Route>
       </Routes>
     </AppContext.Provider>

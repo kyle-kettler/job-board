@@ -32,7 +32,7 @@ export default function NavBar() {
           {user && (
             <div className="flex items-center gap-4">
               <Link to="/jobs">Explore Jobs</Link>
-              <Link to="/applied">Applied</Link>
+              <Link to="/applications">My Applications</Link>
               <Link to="/sign-in">
                 <button
                   onClick={handleSignOut}

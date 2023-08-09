@@ -37,3 +37,8 @@
     transform: rotate(360deg);
   }
 }
+
+::selection {
+  background: #3f3d56;
+  color: #fff;
+}

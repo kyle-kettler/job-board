@@ -49,7 +49,7 @@ export default function FilterForm({
             <option value={''}>Location</option>
             <option value={'San Francisco, CA'}>San Francisco, CA</option>
             <option value={'Bellevue, WA'}>Bellevue, WA</option>
-            <option value={'Austin, TX'}>Austin, TX</option>
+            <option value={'New York, NY'}>New York, NY</option>
             <option value={'Remote'}>Remote</option>
           </select>
           <select

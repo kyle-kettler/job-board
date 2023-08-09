@@ -110,3 +110,22 @@ export async function submitApplication(
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function fetchApplications(
+  userId: number
+): Promise<(Application & Job)[]> {
+  const auth = localStorage.getItem('designengineer');
+  let a;
+  if (auth) {
+    a = JSON.parse(auth);
+  }
+  const req = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${a.token}`,
+    },
+  };
+  const res = await fetch(`/api/applications/${userId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}

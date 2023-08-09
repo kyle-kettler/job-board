@@ -6,6 +6,7 @@ import uploadsMiddleware from './lib/uploads-middleware.js';
 import pg from 'pg';
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
+import { authorizationMiddleware } from './lib/authorization-middleware.js';
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -78,7 +79,8 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 app.get('/api/jobs', async (req, res, next) => {
   try {
     const sql = `
-    select * from "jobs";
+    select * from "jobs"
+    order by "jobId" desc;
     `;
     const result = await db.query(sql);
     res.status(201).json(result.rows);
@@ -105,6 +107,29 @@ app.get('/api/jobs/:jobId', async (req, res, next) => {
     next(err);
   }
 });
+
+app.get(
+  '/api/applications/:userId',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      const userId = Number(req.params.userId);
+      if (!userId) throw new ClientError(400, 'missing required fields');
+      const sql = `
+      select *
+        from "applications"
+        join "jobs" using ("jobId")
+       where "userId" = $1
+       order by "dateApplied" asc
+    `;
+      const params = [userId];
+      const result = await db.query(sql, params);
+      res.status(201).json(result.rows);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 app.post(
   '/api/applications',
