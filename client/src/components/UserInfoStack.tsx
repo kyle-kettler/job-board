@@ -20,7 +20,11 @@ export default function UserInfoStack({ jobApplication }: InfoStackProps) {
       </div>
       <div>
         <p className="text-sm">Last Submission On</p>
-        <p className="text-lg">{formatDate(lastSubmission as string)}</p>
+        <p className="text-lg">
+          {lastSubmission
+            ? formatDate(lastSubmission as string)
+            : 'No submissions'}
+        </p>
       </div>
       <Link to={'/jobs'}>
         <Button type="button" buttonStyle={'secondary'} text="Explore Jobs" />

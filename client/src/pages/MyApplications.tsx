@@ -31,6 +31,32 @@ export default function MyApplications() {
 
   if (!user) navigate('/jobs');
 
+  if (isLoading) {
+    return (
+      <section className="pt-24 bg-stone-300">
+        <div className="container mx-auto">
+          <div className="flex flex-col items-center gap-4 h-screen">
+            <p>Loading your applications...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="pt-24 bg-stone-300">
+        <div className="container mx-auto flex flex-col items-center gap-4 h-screen">
+          <div style={{ color: 'red' }}>
+            <p>
+              Error: {error instanceof Error ? error.message : 'Unknown Error'}
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   if (user)
     return (
       <div className="font-satoshi bg-stone-200">
@@ -40,7 +66,7 @@ export default function MyApplications() {
               <div className="w-1/4 sticky top-12">
                 <UserInfoStack jobApplication={jobApplication} />
               </div>
-              <div className="w-3/4 mt-6">
+              <div className="w-3/4 mt-5">
                 <ApplicationList jobApplication={jobApplication} />
               </div>
             </div>

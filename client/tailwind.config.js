@@ -12,6 +12,9 @@ module.exports = {
         164: '41rem',
         208: '52rem',
       },
+      minHeight: {
+        96: '24rem',
+      },
       fontFamily: {
         satoshi: ['Satoshi', 'sans-serif'],
         'satoshi-md': ['Satoshi-Medium', 'sans-serif'],

@@ -79,7 +79,8 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 app.get('/api/jobs', async (req, res, next) => {
   try {
     const sql = `
-    select * from "jobs";
+    select * from "jobs"
+    order by "jobId" desc;
     `;
     const result = await db.query(sql);
     res.status(201).json(result.rows);
@@ -113,6 +114,7 @@ app.get(
   async (req, res, next) => {
     try {
       const userId = Number(req.params.userId);
+      if (!userId) throw new ClientError(400, 'missing required fields');
       const sql = `
       select *
         from "applications"

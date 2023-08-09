@@ -16,6 +16,8 @@ export default function JobApplicationCard({ jobApplication }: CardProps) {
     salaryCeiling,
   } = jobApplication;
 
+  if (!jobApplication) return <p>no applications</p>;
+
   return (
     <div className="w-full max-w-152 border-[1.5px] border-stone-300 p-3 rounded-xl shadow-sm">
       <div className="flex justify-between mb-8">
@@ -35,7 +37,6 @@ export default function JobApplicationCard({ jobApplication }: CardProps) {
           <Badge text={level} />
           <Badge text={formatSalary(salaryFloor, salaryCeiling)} />
         </div>
-        <div className="text-grey-200"></div>
       </div>
     </div>
   );

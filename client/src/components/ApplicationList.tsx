@@ -10,8 +10,6 @@ type ApplicationListProps = {
 export default function ApplicationList({
   jobApplication,
 }: ApplicationListProps) {
-  const [isLoading, setIsLoading] = useState<boolean>();
-  const [error, setError] = useState<unknown>();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -38,18 +36,6 @@ export default function ApplicationList({
     );
   }
 
-  if (!jobApplication) {
-    return (
-      <section>
-        <div className="container mx-auto">
-          <div className="h-screen">
-            <p>Loading applications...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="py-8">
       <div className="container mx-auto">
@@ -63,16 +49,6 @@ export default function ApplicationList({
             paginate={handlePaginate}
             currentPage={currentPage}
           />
-          <>
-            {error && (
-              <div style={{ color: 'red' }}>
-                <p>
-                  Error:{' '}
-                  {error instanceof Error ? error.message : 'Unknown Error'}
-                </p>
-              </div>
-            )}
-          </>
         </div>
       </div>
     </section>
