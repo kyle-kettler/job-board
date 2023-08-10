@@ -21,24 +21,20 @@ export default function ApplicationForm({
 }: ApplicationFormProps) {
   type InputData = {
     label: string;
-    value?: string;
     type: string;
   };
 
   const formInputs: Record<string, InputData> = {
     name: {
       label: 'Name *',
-      value: '',
       type: 'text',
     },
     email: {
       label: 'Email *',
-      value: '',
       type: 'email',
     },
     phone: {
       label: 'Phone Number *',
-      value: '',
       type: 'number',
     },
     resume: {
@@ -47,24 +43,20 @@ export default function ApplicationForm({
     },
     portfolioUrl: {
       label: 'Portfolio URL *',
-      value: '',
       type: 'text',
     },
     githubUrl: {
       label: 'Github URL *',
-      value: '',
       type: 'text',
     },
     proud: {
       label:
         'What is a project or piece of work you are most proud of and why? *',
-      value: '',
       type: 'textarea',
     },
     interesting: {
       label:
-        'What is the most interesting thing about you that isn’t on your resumé? *',
-      value: '',
+        "What is the most interesting thing about you that isn't on your resumé? *",
       type: 'textarea',
     },
   };
