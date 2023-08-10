@@ -1,14 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FilterForm from '../components/FilterForm';
 import Footer from '../components/Footer';
 import JobList from '../components/JobList';
-import { Level } from '../lib';
+import { Level, Job, fetchJobs } from '../lib';
 
 export default function Jobs() {
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [search, setSearch] = useState('');
   const [location, setLocation] = useState('');
   const [level, setLevel] = useState<Level>('');
   const [salary, setSalary] = useState(0);
+  const [isLoading, setIsLoading] = useState<boolean>();
+  const [error, setError] = useState<unknown>();
+
+  useEffect(() => {
+    async function loadJobs() {
+      setIsLoading(true);
+      try {
+        const jobs = await fetchJobs();
+        setJobs(jobs);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    if (isLoading === undefined) loadJobs();
+  }, [isLoading]);
 
   function handleSearch(searchInput: string): void {
     setSearch(searchInput);
@@ -46,6 +64,7 @@ export default function Jobs() {
           </div>
           <div className="mt-2">
             <FilterForm
+              jobs={jobs}
               searchValue={search}
               locationValue={location}
               levelValue={level}
@@ -60,10 +79,13 @@ export default function Jobs() {
         </div>
       </section>
       <JobList
+        jobs={jobs}
         searchInput={search}
         locationSelect={location}
         levelSelect={level}
         salarySelect={salary}
+        isLoading={isLoading}
+        error={error}
       />
       <Footer />
     </div>

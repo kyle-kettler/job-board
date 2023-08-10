@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Job, Application } from '../lib';
+import { JobApplication } from '../lib';
 import JobApplicationCard from './JobApplicationCard';
 import Pagination from './Pagination';
 
 type ApplicationListProps = {
-  jobApplication: (Application & Job)[] | undefined;
+  jobApplication: JobApplication[];
 };
 
 export default function ApplicationList({
@@ -43,12 +43,14 @@ export default function ApplicationList({
           {currentJobApplications?.map((job) => (
             <JobApplicationCard key={job.applicationId} jobApplication={job} />
           ))}
-          <Pagination
-            itemsPerPage={itemsPerPage}
-            totalItems={jobApplication?.length}
-            paginate={handlePaginate}
-            currentPage={currentPage}
-          />
+          {jobApplication.length > itemsPerPage && (
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={jobApplication?.length}
+              paginate={handlePaginate}
+              currentPage={currentPage}
+            />
+          )}
         </div>
       </div>
     </section>

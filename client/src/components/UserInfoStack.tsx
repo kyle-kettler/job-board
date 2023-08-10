@@ -1,9 +1,9 @@
-import { formatDate, Job, Application } from '../lib';
+import { formatDate, JobApplication } from '../lib';
 import { Link } from 'react-router-dom';
 import Button from './Button';
 
 type InfoStackProps = {
-  jobApplication: (Application & Job)[] | undefined;
+  jobApplication: JobApplication[];
 };
 
 export default function UserInfoStack({ jobApplication }: InfoStackProps) {

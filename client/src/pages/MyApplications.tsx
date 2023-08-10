@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { fetchApplications, Job, Application } from '../lib';
+import { fetchApplications, JobApplication } from '../lib';
 import AppContext from '../components/AppContext';
 import { useNavigate } from 'react-router-dom';
 import ApplicationList from '../components/ApplicationList';
@@ -11,8 +11,7 @@ export default function MyApplications() {
   const { user } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState<unknown>();
-  const [jobApplication, setJobApplications] =
-    useState<(Application & Job)[]>();
+  const [jobApplication, setJobApplications] = useState<JobApplication[]>([]);
 
   useEffect(() => {
     async function loadApplicationsAndJobs(userId: number) {

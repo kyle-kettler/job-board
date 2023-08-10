@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { fetchJobs, Job, Level } from '../lib';
+import { useState } from 'react';
+import { Job, Level } from '../lib';
 import {
   matchesSearch,
   matchesLocation,
@@ -14,6 +14,9 @@ type JobListProps = {
   locationSelect: string;
   levelSelect: Level;
   salarySelect: number;
+  isLoading: boolean | undefined;
+  error: unknown;
+  jobs: Job[];
 };
 
 export default function JobList({
@@ -21,29 +24,14 @@ export default function JobList({
   locationSelect,
   levelSelect,
   salarySelect,
+  isLoading,
+  error,
+  jobs,
 }: JobListProps) {
-  const [isLoading, setIsLoading] = useState<boolean>();
-  const [error, setError] = useState<unknown>();
-  const [jobs, setJobs] = useState<Job[]>();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 8;
 
-  useEffect(() => {
-    async function loadJobs() {
-      setIsLoading(true);
-      try {
-        const jobs = await fetchJobs();
-        setJobs(jobs);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    if (isLoading === undefined) loadJobs();
-  }, [isLoading]);
-
-  if (!jobs) {
+  if (isLoading) {
     return (
       <section className="py-8">
         <div className="container mx-auto">
@@ -98,12 +86,14 @@ export default function JobList({
           {currentJobs?.map((job) => (
             <JobCard job={job} key={job.jobId} />
           ))}
-          <Pagination
-            itemsPerPage={itemsPerPage}
-            totalItems={filteredJobs?.length}
-            paginate={handlePaginate}
-            currentPage={currentPage}
-          />
+          {filteredJobs.length > itemsPerPage && (
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={filteredJobs?.length}
+              paginate={handlePaginate}
+              currentPage={currentPage}
+            />
+          )}
           <>
             {error && (
               <div style={{ color: 'red' }}>
