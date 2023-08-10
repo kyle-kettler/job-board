@@ -1,10 +1,11 @@
-import { FormEvent, useContext } from 'react';
+import { FormEvent, useContext, Dispatch, SetStateAction } from 'react';
 import { Job } from '../../lib';
 import Button from '../Button';
 import AppContext from '../AppContext';
 import FormSuccess from './FormSuccess';
 import NoUser from './NoUser';
 import FormInput from './FormInput';
+import Dropzone from './Dropzone';
 
 type ApplicationFormProps = {
   job: Job;
@@ -12,6 +13,7 @@ type ApplicationFormProps = {
   onInputChange: (key: string, value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   formSubmitted: boolean;
+  setFile: Dispatch<SetStateAction<File | undefined>>;
 };
 
 export default function ApplicationForm({
@@ -20,6 +22,7 @@ export default function ApplicationForm({
   onInputChange,
   onSubmit,
   formSubmitted,
+  setFile,
 }: ApplicationFormProps) {
   type InputData = {
     label: string;
@@ -74,11 +77,9 @@ export default function ApplicationForm({
       inputs.push(
         <div key={key}>
           <label>{formInputs[key].label}</label>
-          <input
-            className={`${inputClasses} border-dashed`}
-            key={key}
-            name={key}
-            type={formInputs[key].type}
+          <Dropzone
+            setFile={setFile}
+            className={`${inputClasses} border-dashed text-center py-12 text-sm text-stone-600`}
           />
         </div>
       );
