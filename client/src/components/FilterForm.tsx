@@ -1,7 +1,8 @@
 import { Search as SearchIcon } from 'lucide-react';
-import { Level } from '../lib';
+import { Level, Job } from '../lib';
 
 type FilterProps = {
+  jobs: Job[];
   onSearchInput: (value: string) => void;
   onLocationSelect: (value: string) => void;
   onLevelSelect: (value: Level) => void;
@@ -14,6 +15,7 @@ type FilterProps = {
 };
 
 export default function FilterForm({
+  jobs,
   onSearchInput,
   onLocationSelect,
   onLevelSelect,
@@ -24,6 +26,8 @@ export default function FilterForm({
   levelValue,
   salaryValue,
 }: FilterProps) {
+  const locations = [...new Set(jobs.map((item) => item.location))];
+
   return (
     <div>
       <div className="flex flex-col gap-3">
@@ -47,10 +51,11 @@ export default function FilterForm({
             value={locationValue}
             onChange={(e) => onLocationSelect(e.currentTarget.value)}>
             <option value={''}>Location</option>
-            <option value={'San Francisco, CA'}>San Francisco, CA</option>
-            <option value={'Bellevue, WA'}>Bellevue, WA</option>
-            <option value={'New York, NY'}>New York, NY</option>
-            <option value={'Remote'}>Remote</option>
+            {locations.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
           </select>
           <select
             className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500 cursor-pointer"

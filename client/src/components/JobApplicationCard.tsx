@@ -1,8 +1,8 @@
-import { Job, Application, formatSalary, formatDate } from '../lib';
+import { formatSalary, formatDate, JobApplication } from '../lib';
 import Badge from './Badge';
 
 type CardProps = {
-  jobApplication: Job & Application;
+  jobApplication: JobApplication;
 };
 
 export default function JobApplicationCard({ jobApplication }: CardProps) {

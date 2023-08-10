@@ -33,7 +33,7 @@ export default function JobDetails() {
         const job = await fetchOneJob(jobId);
         setJob(job);
       } catch (err) {
-        console.error(err);
+        alert(err);
       } finally {
         setLoading(false);
       }
@@ -59,7 +59,7 @@ export default function JobDetails() {
       setFormSubmitted(true);
       setFormValues(formState);
     } catch (err) {
-      console.error(err);
+      alert(err);
     }
   }
 

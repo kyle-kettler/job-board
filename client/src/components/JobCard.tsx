@@ -24,7 +24,7 @@ export default function JobCard({ job }: CardProps) {
       to={`/jobs/${jobId}`}
       className="w-full max-w-152 border-[1.5px] p-3 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
       <div className="flex justify-between mb-8">
-        <div className="flex gap-3 w-3/5">
+        <div className="flex gap-4 w-3/4">
           <img
             className="rounded-full w-14 h-14"
             src={companyImgUrl}

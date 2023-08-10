@@ -29,6 +29,8 @@ export type Application = {
   interestingThing: string;
 };
 
+export type JobApplication = Job & Application;
+
 export type User = {
   userId: number;
   username: string;
@@ -113,7 +115,7 @@ export async function submitApplication(
 
 export async function fetchApplications(
   userId: number
-): Promise<(Application & Job)[]> {
+): Promise<JobApplication[]> {
   const auth = localStorage.getItem('designengineer');
   let a;
   if (auth) {
