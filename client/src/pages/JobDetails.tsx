@@ -1,18 +1,30 @@
-import { useEffect, useState } from 'react';
-import { fetchOneJob, Job } from '../lib';
+import { useEffect, useState, FormEvent } from 'react';
+import { fetchOneJob, Job, submitApplication } from '../lib';
 import { useParams } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactMarkdown from 'react-markdown';
 import Footer from '../components/Footer';
 import JobInfoStack from '../components/JobInfoStack';
 import Button from '../components/Button';
-import ApplicationForm from '../components/ApplicationForm';
+import ApplicationForm from '../components/ApplicationForm/ApplicationForm';
 
 export default function JobDetails() {
+  const formState: Record<string, string> = {
+    name: '',
+    email: '',
+    phone: '',
+    portfolioUrl: '',
+    githubUrl: '',
+    proud: '',
+    interesting: '',
+  };
+
   const { jobId } = useParams();
   const [job, setJob] = useState<Job>();
   const [loading, setLoading] = useState<boolean>();
   const [tabIndex, setTabIndex] = useState(0);
+  const [formValues, setFormValues] = useState(formState);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() => {
     async function loadOneJob(jobId: number) {
@@ -30,6 +42,26 @@ export default function JobDetails() {
       loadOneJob(+jobId);
     }
   }, [jobId]);
+
+  function handleInputChange(key: string, value: string): void {
+    setFormValues({
+      ...formValues,
+      [key]: value,
+    });
+    console.log(formValues);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    try {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      await submitApplication(formData);
+      setFormSubmitted(true);
+      setFormValues(formState);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   if (loading) {
     return (
@@ -62,17 +94,16 @@ export default function JobDetails() {
             <div className="w-1/3 sticky top-12">
               <JobInfoStack job={job} />
             </div>
-            <div className="w-2/3 mt-16">
+            <div className="w-2/3 mt-28">
               <Tabs
                 selectedIndex={tabIndex}
                 onSelect={(index) => setTabIndex(index)}
-                selectedTabClassName="border-orange-500"
-                className="overflow-visible">
+                selectedTabClassName="border-orange-500 text-stone-900">
                 <TabList className="flex gap-5 mb-4">
-                  <Tab className="text-stone-600 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
+                  <Tab className="text-stone-500 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
                     Overview
                   </Tab>
-                  <Tab className="text-stone-600 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
+                  <Tab className="text-stone-500 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
                     Application
                   </Tab>
                 </TabList>
@@ -92,7 +123,13 @@ export default function JobDetails() {
                   />
                 </TabPanel>
                 <TabPanel>
-                  <ApplicationForm job={job} />
+                  <ApplicationForm
+                    job={job}
+                    formState={formValues}
+                    onInputChange={handleInputChange}
+                    onSubmit={handleSubmit}
+                    formSubmitted={formSubmitted}
+                  />
                 </TabPanel>
               </Tabs>
             </div>

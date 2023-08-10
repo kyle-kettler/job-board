@@ -120,7 +120,7 @@ app.get(
         from "applications"
         join "jobs" using ("jobId")
        where "userId" = $1
-       order by "dateApplied" asc
+       order by "dateApplied" desc
     `;
       const params = [userId];
       const result = await db.query(sql, params);
