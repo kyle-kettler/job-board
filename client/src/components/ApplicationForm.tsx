@@ -2,7 +2,8 @@ import { FormEvent, useContext } from 'react';
 import { Job } from '../lib';
 import Button from './Button';
 import AppContext from './AppContext';
-import { Link } from 'react-router-dom';
+import FormSuccess from './FormSuccess';
+import NoUser from './NoUser';
 
 type ApplicationFormProps = {
   job: Job;
@@ -61,9 +62,9 @@ export default function ApplicationForm({
     },
   };
 
-  const { user } = useContext(AppContext);
   const inputClasses =
     'rounded-lg p-2 bg-transparent border-[1.5px] border-stone-500 w-full mt-1';
+  const { user } = useContext(AppContext);
 
   // Creating the form from the object above
   const inputs = [];
@@ -133,35 +134,9 @@ export default function ApplicationForm({
 
   // Show success message after user submits the form.
   if (user && formSubmitted) {
-    return (
-      <div className="flex justify-center bg-stone-300 z-10 rounded-lg p-12 text-center text-lg">
-        <p>
-          Thank you for applying! Your application has been sent to{' '}
-          {`${job.companyName}.`}
-        </p>
-      </div>
-    );
+    return <FormSuccess companyName={job.companyName} />;
   }
 
   // Show a login message if the user is not logged in.
-  return (
-    <div className="flex justify-center bg-stone-300 z-10 rounded-lg p-12 text-center">
-      {
-        <Link
-          to="/sign-up"
-          className="mr-1 underline hover:text-stone-600 transition-colors">
-          Create an account
-        </Link>
-      }
-      or
-      {
-        <Link
-          to="/sign-in"
-          className="mx-1 underline hover:text-stone-600 transition-colors">
-          login
-        </Link>
-      }{' '}
-      to Apply.
-    </div>
-  );
+  return <NoUser />;
 }

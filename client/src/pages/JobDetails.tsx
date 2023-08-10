@@ -57,6 +57,7 @@ export default function JobDetails() {
       const formData = new FormData(event.currentTarget);
       await submitApplication(formData);
       setFormSubmitted(true);
+      setFormValues(formState);
     } catch (err) {
       console.error(err);
     }
