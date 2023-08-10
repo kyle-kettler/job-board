@@ -42,3 +42,15 @@
   background: #3f3d56;
   color: #fff;
 }
+
+/* Works for Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+/* Works for Firefox */
+input[type='number'] {
+  appearance: textfield;
+}

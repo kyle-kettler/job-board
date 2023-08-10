@@ -20,14 +20,12 @@ export default function JobApplicationCard({ jobApplication }: CardProps) {
 
   return (
     <div className="w-full max-w-152 border-[1.5px] border-stone-300 p-3 rounded-xl shadow-sm">
-      <div className="flex justify-between mb-8">
-        <div className="flex gap-3">
-          <div>
-            <h2 className="text-2xl">{title}</h2>
-            <p>{companyName}</p>
-          </div>
+      <div className="flex justify-between mb-8 gap-4">
+        <div className="flex flex-col gap-4">
+          <h2 className="text-2xl">{title}</h2>
+          <p>{companyName}</p>
         </div>
-        <p className="font-light text-md">
+        <p className="font-light text-md shrink-0 mt-1">
           {`Applied on ${formatDate(dateApplied)}`}
         </p>
       </div>
