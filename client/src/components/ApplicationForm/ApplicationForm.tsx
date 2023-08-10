@@ -1,9 +1,10 @@
 import { FormEvent, useContext } from 'react';
-import { Job } from '../lib';
-import Button from './Button';
-import AppContext from './AppContext';
+import { Job } from '../../lib';
+import Button from '../Button';
+import AppContext from '../AppContext';
 import FormSuccess from './FormSuccess';
 import NoUser from './NoUser';
+import FormInput from './FormInput';
 
 type ApplicationFormProps = {
   job: Job;
@@ -98,14 +99,15 @@ export default function ApplicationForm({
     } else {
       inputs.push(
         <div key={key}>
-          <label>{formInputs[key].label}</label>
-          <input
-            className={inputClasses}
-            key={key}
-            name={key}
+          <FormInput
             type={formInputs[key].type}
+            label={formInputs[key].label}
+            name={key}
             value={formState[key]}
-            onChange={(e) => onInputChange(key, e.target.value)}
+            className={inputClasses}
+            onChange={(e) =>
+              onInputChange(key, (e.target as HTMLInputElement).value)
+            }
           />
         </div>
       );

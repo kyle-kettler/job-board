@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import Footer from '../components/Footer';
 import JobInfoStack from '../components/JobInfoStack';
 import Button from '../components/Button';
-import ApplicationForm from '../components/ApplicationForm';
+import ApplicationForm from '../components/ApplicationForm/ApplicationForm';
 
 export default function JobDetails() {
   const formState: Record<string, string> = {
@@ -98,8 +98,7 @@ export default function JobDetails() {
               <Tabs
                 selectedIndex={tabIndex}
                 onSelect={(index) => setTabIndex(index)}
-                selectedTabClassName="border-orange-500 text-black"
-                className="overflow-visible">
+                selectedTabClassName="border-orange-500 text-stone-900">
                 <TabList className="flex gap-5 mb-4">
                   <Tab className="text-stone-500 pr-12 pb-1 border-b hover:border-orange-500 transition-colors cursor-pointer">
                     Overview

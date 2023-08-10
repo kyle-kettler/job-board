@@ -19,8 +19,9 @@ export default function FormBasicInput({
 }: FormInputProps) {
   return (
     <label>
+      {label}
       <input
-        type="text"
+        type={type}
         name={name}
         value={value}
         className={className}
