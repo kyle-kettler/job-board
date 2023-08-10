@@ -25,6 +25,7 @@ export default function JobDetails() {
   const [tabIndex, setTabIndex] = useState(0);
   const [formValues, setFormValues] = useState(formState);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [file, setFile] = useState<File | undefined>();
 
   useEffect(() => {
     async function loadOneJob(jobId: number) {
@@ -48,13 +49,13 @@ export default function JobDetails() {
       ...formValues,
       [key]: value,
     });
-    console.log(formValues);
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
+      if (file) formData.append('resume', file);
       await submitApplication(formData);
       setFormSubmitted(true);
       setFormValues(formState);
@@ -124,6 +125,7 @@ export default function JobDetails() {
                 </TabPanel>
                 <TabPanel>
                   <ApplicationForm
+                    setFile={setFile}
                     job={job}
                     formState={formValues}
                     onInputChange={handleInputChange}
