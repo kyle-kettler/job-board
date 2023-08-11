@@ -1,5 +1,5 @@
 import { useCallback, useState, Dispatch, SetStateAction } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { useDropzone, FileWithPath } from 'react-dropzone';
 
 type DropzoneProps = {
   className: string;
@@ -7,15 +7,15 @@ type DropzoneProps = {
 };
 
 export default function Dropzone({ className, setFile }: DropzoneProps) {
-  const [preview, setPreview] = useState<string>('');
+  const [preview, setPreview] = useState('');
   const onDrop = useCallback(
-    (acceptedFiles: any) => {
+    (acceptedFiles: FileWithPath[]) => {
       const newFile = new FileReader();
 
       if (acceptedFiles[0]) {
         newFile.onload = () => {
           setFile(acceptedFiles[0]);
-          setPreview(acceptedFiles[0].path);
+          setPreview(acceptedFiles[0].path as string);
         };
       }
 

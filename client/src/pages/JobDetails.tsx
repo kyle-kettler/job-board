@@ -56,6 +56,10 @@ export default function JobDetails() {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
       if (file) formData.append('resume', file);
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+      }
       await submitApplication(formData);
       setFormSubmitted(true);
       setFormValues(formState);
