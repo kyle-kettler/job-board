@@ -107,6 +107,7 @@ export async function submitApplication(
   const req = {
     method: 'POST',
     body: formData,
+    'Content-Type': 'multipart/form-data',
   };
   const res = await fetch('/api/applications', req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
