@@ -31,7 +31,7 @@ export default function Dropzone({ className, setFile }: DropzoneProps) {
         {...getRootProps({
           className: className,
         })}>
-        <input {...getInputProps()} name="resume" />
+        <input {...getInputProps()} />
         {isDragActive ? (
           <p>Drop your resume here...</p>
         ) : (
