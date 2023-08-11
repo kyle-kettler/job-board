@@ -1,9 +1,10 @@
 import path from 'node:path';
 import multer from 'multer';
 
-const uploadsStaticDir = new URL('public', import.meta.url).pathname;
+const uploadsStaticDir = new URL('../public', import.meta.url).pathname;
 
 const fileDirectory = `${uploadsStaticDir}/uploads`;
+console.log(fileDirectory);
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
