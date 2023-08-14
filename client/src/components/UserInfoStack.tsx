@@ -12,13 +12,13 @@ export default function UserInfoStack({ jobApplication }: InfoStackProps) {
   const lastSubmission = jobApplication.at(0)?.dateApplied;
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-2xl">My Applications</h1>
-      <div>
+    <div className="flex flex-wrap md:flex-col gap-y-4">
+      <h1 className="text-2xl w-full">My Applications</h1>
+      <div className="w-1/2">
         <p className="text-sm">Applications Submitted</p>
         <p className="text-lg">{applicationsSubmitted}</p>
       </div>
-      <div>
+      <div className="w-1/2">
         <p className="text-sm">Last Submission On</p>
         <p className="text-lg">
           {lastSubmission

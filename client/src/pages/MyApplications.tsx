@@ -59,13 +59,13 @@ export default function MyApplications() {
   if (user)
     return (
       <div className="font-satoshi bg-stone-200">
-        <section className="pt-40 pb-24 min-h-screen">
+        <section className="pt-40 pb-24 px-4 sm:px-8 min-h-screen">
           <div className="max-w-208 mx-auto">
-            <div className="flex items-start gap-12">
-              <div className="w-1/4 sticky top-12">
+            <div className="flex flex-wrap md:flex-nowrap items-start">
+              <div className="w-full md:w-1/4 md:sticky top-12">
                 <UserInfoStack jobApplication={jobApplication} />
               </div>
-              <div className="w-3/4 mt-5">
+              <div className="w-full md:w-3/4 mt-5">
                 <ApplicationList jobApplication={jobApplication} />
               </div>
             </div>

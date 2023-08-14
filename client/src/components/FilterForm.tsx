@@ -45,7 +45,7 @@ export default function FilterForm({
             Clear
           </button>
         </div>
-        <div className="w-full flex gap-3">
+        <div className="w-full flex flex-col sm:flex-row gap-2">
           <select
             className="w-full flex-grow p-2 rounded-md border-[1.5px] text-gray-500 cursor-pointer"
             value={locationValue}
