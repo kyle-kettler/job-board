@@ -13,7 +13,7 @@ type ApplicationFormProps = {
   onInputChange: (key: string, value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   formSubmitted: boolean;
-  setFile: Dispatch<SetStateAction<File | undefined>>;
+  setFile: Dispatch<SetStateAction<File | null>>;
 };
 
 export default function ApplicationForm({

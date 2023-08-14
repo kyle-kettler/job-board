@@ -25,7 +25,7 @@ export default function JobDetails() {
   const [tabIndex, setTabIndex] = useState(0);
   const [formValues, setFormValues] = useState(formState);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [file, setFile] = useState<File | undefined>();
+  const [file, setFile] = useState<File | null>(null);
 
   useEffect(() => {
     async function loadOneJob(jobId: number) {
@@ -56,13 +56,10 @@ export default function JobDetails() {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
       if (file) formData.append('resume', file);
-
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-      }
       await submitApplication(formData);
       setFormSubmitted(true);
       setFormValues(formState);
+      setFile(null);
     } catch (err) {
       alert(err);
     }

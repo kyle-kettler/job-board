@@ -161,9 +161,9 @@ app.post(
       }
       const resumeUrl = `/uploads/${req.file.filename}`;
       const sql = `
-      insert into "applications" ("userId", "jobId", "fullName", "email", "phone", "resumeUrl", "portfolioUrl", "githubUrl", "proudOfWork", "interestingThing")
-      values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-      returning *
+        insert into "applications" ("userId", "jobId", "fullName", "email", "phone", "resumeUrl", "portfolioUrl", "githubUrl", "proudOfWork", "interestingThing")
+        values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+        returning *
     `;
       const params = [
         userId,

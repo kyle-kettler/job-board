@@ -3,7 +3,7 @@ import { useDropzone, FileWithPath } from 'react-dropzone';
 
 type DropzoneProps = {
   className: string;
-  setFile: Dispatch<SetStateAction<File | undefined>>;
+  setFile: Dispatch<SetStateAction<File | null>>;
 };
 
 export default function Dropzone({ className, setFile }: DropzoneProps) {
