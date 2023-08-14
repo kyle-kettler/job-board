@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import JobInfoStack from '../components/JobInfoStack';
 import Button from '../components/Button';
 import ApplicationForm from '../components/ApplicationForm/ApplicationForm';
+import Loader from '../components/Loader';
 
 export default function JobDetails() {
   const formState: Record<string, string> = {
@@ -70,8 +71,8 @@ export default function JobDetails() {
       <div className="font-satoshi bg-stone-200">
         <section className="pt-40 pb-24">
           <div className="max-w-208 mx-auto">
-            <div className="flex h-screen">
-              <p>Loading...</p>
+            <div className="flex justify-center h-screen">
+              <Loader />
             </div>
           </div>
         </section>

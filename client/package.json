@@ -17,6 +17,7 @@
     "react-dropzone": "^14.2.3",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
     "react-tabs": "^6.0.2",
     "tailwindcss-fluid-type": "^2.0.3",
     "typescript": "^4.9.5",

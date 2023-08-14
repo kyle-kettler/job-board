@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ApplicationList from '../components/ApplicationList';
 import Footer from '../components/Footer';
 import UserInfoStack from '../components/UserInfoStack';
+import Loader from '../components/Loader';
 
 export default function MyApplications() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function MyApplications() {
       <section className="pt-24 bg-stone-300">
         <div className="container mx-auto">
           <div className="flex flex-col items-center gap-4 h-screen">
-            <p>Loading your applications...</p>
+            <Loader />
           </div>
         </div>
       </section>

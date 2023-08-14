@@ -39,7 +39,7 @@ export default function ApplicationForm({
     email: {
       label: 'Email *',
       type: 'email',
-      placeholder: 'luke@skywalker.com',
+      placeholder: 'you@email.com',
     },
     phone: {
       label: 'Phone Number *',

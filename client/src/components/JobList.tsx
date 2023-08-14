@@ -8,6 +8,7 @@ import {
 } from '../lib/filters';
 import JobCard from '../components/JobCard';
 import Pagination from '../components/Pagination';
+import Loader from './Loader';
 
 type JobListProps = {
   searchInput: string;
@@ -32,15 +33,7 @@ export default function JobList({
   const itemsPerPage = 8;
 
   if (isLoading) {
-    return (
-      <section className="py-8">
-        <div className="container mx-auto">
-          <div className="flex flex-col items-center gap-4 h-screen">
-            <p>Loading jobs...</p>
-          </div>
-        </div>
-      </section>
-    );
+    return <Loader />;
   }
 
   /**
