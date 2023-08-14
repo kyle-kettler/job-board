@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ApplicationList from '../components/ApplicationList';
 import Footer from '../components/Footer';
 import UserInfoStack from '../components/UserInfoStack';
+import Loader from '../components/Loader';
 
 export default function MyApplications() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function MyApplications() {
       <section className="pt-24 bg-stone-300">
         <div className="container mx-auto">
           <div className="flex flex-col items-center gap-4 h-screen">
-            <p>Loading your applications...</p>
+            <Loader />
           </div>
         </div>
       </section>
@@ -59,13 +60,13 @@ export default function MyApplications() {
   if (user)
     return (
       <div className="font-satoshi bg-stone-200">
-        <section className="pt-40 pb-24 min-h-screen">
+        <section className="pt-40 pb-24 px-4 sm:px-8 min-h-screen">
           <div className="max-w-208 mx-auto">
-            <div className="flex items-start gap-12">
-              <div className="w-1/4 sticky top-12">
+            <div className="flex flex-wrap md:flex-nowrap items-start">
+              <div className="w-full md:w-1/4 md:sticky top-12">
                 <UserInfoStack jobApplication={jobApplication} />
               </div>
-              <div className="w-3/4 mt-5">
+              <div className="w-full md:w-3/4 mt-5">
                 <ApplicationList jobApplication={jobApplication} />
               </div>
             </div>

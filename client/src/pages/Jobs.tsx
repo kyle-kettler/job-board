@@ -53,7 +53,7 @@ export default function Jobs() {
 
   return (
     <div className="font-satoshi">
-      <section className="bg-stone-200 pt-24 pb-8">
+      <section className="bg-stone-200 pt-32 pb-8 px-4">
         <div className="w-full max-w-152 mx-auto">
           <div className="text-stone-600">
             <h1 className="text-4xl font-light mb-1">Explore Jobs</h1>
@@ -78,15 +78,17 @@ export default function Jobs() {
           </div>
         </div>
       </section>
-      <JobList
-        jobs={jobs}
-        searchInput={search}
-        locationSelect={location}
-        levelSelect={level}
-        salarySelect={salary}
-        isLoading={isLoading}
-        error={error}
-      />
+      <div className="px-4">
+        <JobList
+          jobs={jobs}
+          searchInput={search}
+          locationSelect={location}
+          levelSelect={level}
+          salarySelect={salary}
+          isLoading={isLoading}
+          error={error}
+        />
+      </div>
       <Footer />
     </div>
   );

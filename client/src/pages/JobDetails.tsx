@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import JobInfoStack from '../components/JobInfoStack';
 import Button from '../components/Button';
 import ApplicationForm from '../components/ApplicationForm/ApplicationForm';
+import Loader from '../components/Loader';
 
 export default function JobDetails() {
   const formState: Record<string, string> = {
@@ -22,6 +23,7 @@ export default function JobDetails() {
   const { jobId } = useParams();
   const [job, setJob] = useState<Job>();
   const [loading, setLoading] = useState<boolean>();
+  const [error, setError] = useState<unknown>();
   const [tabIndex, setTabIndex] = useState(0);
   const [formValues, setFormValues] = useState(formState);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -34,7 +36,7 @@ export default function JobDetails() {
         const job = await fetchOneJob(jobId);
         setJob(job);
       } catch (err) {
-        alert(err);
+        setError(err);
       } finally {
         setLoading(false);
       }
@@ -61,7 +63,7 @@ export default function JobDetails() {
       setFormValues(formState);
       setFile(null);
     } catch (err) {
-      alert(err);
+      setError(err);
     }
   }
 
@@ -70,13 +72,27 @@ export default function JobDetails() {
       <div className="font-satoshi bg-stone-200">
         <section className="pt-40 pb-24">
           <div className="max-w-208 mx-auto">
-            <div className="flex h-screen">
-              <p>Loading...</p>
+            <div className="flex justify-center h-screen">
+              <Loader />
             </div>
           </div>
         </section>
         <Footer />
       </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="pt-24 bg-stone-300">
+        <div className="container mx-auto flex flex-col items-center gap-4 h-screen">
+          <div style={{ color: 'red' }}>
+            <p>
+              Error: {error instanceof Error ? error.message : 'Unknown Error'}
+            </p>
+          </div>
+        </div>
+      </section>
     );
   }
 
@@ -90,13 +106,13 @@ export default function JobDetails() {
 
   return (
     <div className="font-satoshi bg-stone-200">
-      <section className="pt-40 pb-24 min-h-screen">
+      <section className="pt-40 px-8 pb-24 min-h-screen">
         <div className="max-w-208 mx-auto">
-          <div className="flex items-start gap-12">
-            <div className="w-1/3 sticky top-12">
+          <div className="flex items-start flex-wrap md:gap-12 md:flex-nowrap">
+            <div className="w-full md:w-1/3 md:sticky top-12">
               <JobInfoStack job={job} />
             </div>
-            <div className="w-2/3 mt-28">
+            <div className="w-full md:w-2/3 mt-8 md:mt-28">
               <Tabs
                 selectedIndex={tabIndex}
                 onSelect={(index) => setTabIndex(index)}

@@ -11,6 +11,8 @@ type AuthFormProps = {
 
 export default function AuthForm({ action, onSignIn }: AuthFormProps) {
   const navigate = useNavigate();
+  const [usernameInput, setUsernameInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
   const [error, setError] = useState<unknown>();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -33,8 +35,12 @@ export default function AuthForm({ action, onSignIn }: AuthFormProps) {
     try {
       if (action === 'sign-up') {
         handleSignUp(username, password);
+        setPasswordInput('');
+        setUsernameInput('');
       } else {
         handleSignIn(username, password);
+        setPasswordInput('');
+        setUsernameInput('');
       }
     } catch (err) {
       setError(err);
@@ -67,6 +73,8 @@ export default function AuthForm({ action, onSignIn }: AuthFormProps) {
             name="username"
             required
             className="rounded-sm p-1"
+            value={usernameInput}
+            onChange={(e) => setUsernameInput(e.target.value)}
           />
         </div>
         <div className="flex flex-col w-full gap-2">
@@ -78,6 +86,8 @@ export default function AuthForm({ action, onSignIn }: AuthFormProps) {
             name="password"
             required
             className="rounded-sm p-1"
+            value={passwordInput}
+            onChange={(e) => setPasswordInput(e.target.value)}
           />
         </div>
         <Button type="submit" buttonStyle="primary" text={buttonText} />

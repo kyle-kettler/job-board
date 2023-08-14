@@ -27,20 +27,24 @@ export default function ApplicationForm({
   type InputData = {
     label: string;
     type: string;
+    placeholder?: string;
   };
 
   const formInputs: Record<string, InputData> = {
     name: {
-      label: 'Name *',
+      label: 'Full Name *',
       type: 'text',
+      placeholder: 'Enter your name...',
     },
     email: {
       label: 'Email *',
       type: 'email',
+      placeholder: 'you@email.com',
     },
     phone: {
       label: 'Phone Number *',
-      type: 'number',
+      type: 'tel',
+      placeholder: '123-456-7890',
     },
     resume: {
       label: 'Resume *',
@@ -49,20 +53,24 @@ export default function ApplicationForm({
     portfolioUrl: {
       label: 'Portfolio URL *',
       type: 'text',
+      placeholder: 'yourwebsite.com',
     },
     githubUrl: {
       label: 'Github URL *',
       type: 'text',
+      placeholder: 'github.com/you',
     },
     proud: {
       label:
         'What is a project or piece of work you are most proud of and why? *',
       type: 'textarea',
+      placeholder: 'Type here...',
     },
     interesting: {
       label:
         "What is the most interesting thing about you that isn't on your resumé? *",
       type: 'textarea',
+      placeholder: 'Type here...',
     },
   };
 
@@ -94,6 +102,8 @@ export default function ApplicationForm({
             rows={5}
             value={formState[key]}
             onChange={(e) => onInputChange(key, e.target.value)}
+            placeholder={formInputs[key].placeholder}
+            required
           />
         </div>
       );
@@ -105,6 +115,7 @@ export default function ApplicationForm({
             label={formInputs[key].label}
             name={key}
             value={formState[key]}
+            placeholder={formInputs[key].placeholder}
             className={inputClasses}
             onChange={(e) =>
               onInputChange(key, (e.target as HTMLInputElement).value)

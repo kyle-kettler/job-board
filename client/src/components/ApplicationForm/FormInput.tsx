@@ -6,6 +6,7 @@ type FormInputProps = {
   name: string;
   value: string;
   className: string;
+  placeholder?: string;
   onChange: (e: FormEvent) => void;
 };
 
@@ -16,6 +17,7 @@ export default function FormBasicInput({
   value,
   className,
   onChange,
+  placeholder,
 }: FormInputProps) {
   return (
     <label>
@@ -26,6 +28,8 @@ export default function FormBasicInput({
         value={value}
         className={className}
         onChange={onChange}
+        placeholder={placeholder}
+        required
       />
     </label>
   );

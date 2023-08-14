@@ -38,20 +38,18 @@ export default function ApplicationList({
 
   return (
     <section className="py-8">
-      <div className="container mx-auto">
-        <div className="flex flex-col items-center gap-4">
-          {currentJobApplications?.map((job) => (
-            <JobApplicationCard key={job.applicationId} jobApplication={job} />
-          ))}
-          {jobApplication.length > itemsPerPage && (
-            <Pagination
-              itemsPerPage={itemsPerPage}
-              totalItems={jobApplication?.length}
-              paginate={handlePaginate}
-              currentPage={currentPage}
-            />
-          )}
-        </div>
+      <div className="flex flex-col gap-4 w-full">
+        {currentJobApplications?.map((job) => (
+          <JobApplicationCard key={job.applicationId} jobApplication={job} />
+        ))}
+        {jobApplication.length > itemsPerPage && (
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={jobApplication?.length}
+            paginate={handlePaginate}
+            currentPage={currentPage}
+          />
+        )}
       </div>
     </section>
   );
