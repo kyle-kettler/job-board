@@ -1,7 +1,12 @@
 type ButtonProps = {
   text: string;
   type: 'button' | 'submit' | 'reset';
-  buttonStyle: 'primary' | 'primary-lg' | 'secondary';
+  buttonStyle:
+    | 'primary'
+    | 'primary-lg'
+    | 'primary-sm'
+    | 'secondary'
+    | 'secondary-sm';
   onClick?: () => void;
 };
 
@@ -33,10 +38,32 @@ export default function Button({
     );
   }
 
+  if (buttonStyle === 'primary-sm') {
+    return (
+      <button
+        className="px-3 bg-orange-500 border-[1.5px] border-orange-500 hover:border-orange-600 hover:bg-orange-600 text-white rounded transition-colors text-base"
+        type={type}
+        onClick={onClick}>
+        {text}
+      </button>
+    );
+  }
+
   if (buttonStyle === 'secondary') {
     return (
       <button
         className="text-sm py-1 px-3 border-[1.5px] border-stone-700 rounded hover:bg-stone-300 transition-colors"
+        type={type}
+        onClick={onClick}>
+        {text}
+      </button>
+    );
+  }
+
+  if (buttonStyle === 'secondary-sm') {
+    return (
+      <button
+        className="text-base px-3 border-[1.5px] border-stone-700 rounded hover:bg-stone-300 transition-colors"
         type={type}
         onClick={onClick}>
         {text}
