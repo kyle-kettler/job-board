@@ -2,7 +2,7 @@
 -- starting/dummy data to your database tables
 
     insert into "users" ("username", "hashedPassword")
-    values ('user', '$argon2id$v=19$m=4096,t=3,p=1$GYiw47kNwpgIp5Y7/E/1CA$sIiwZ9k59xmUpLTVPna5bGnkhok+mRMPDkUO4W/j5aA')
+    values ('user', '$argon2id$v=19$m=4096,t=3,p=1$GYiw47kNwpgIp5Y7/E/1CA$sIiwZ9k59xmUpLTVPna5bGnkhok+mRMPDkUO4W/j5aA');
 
     insert into "jobs" ("title", "description", "companyName", "companyImgUrl", "salaryFloor", "salaryCeiling", "level", "location", "active")
     values
