@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <section className="w-full px-4 font-satoshi">
       <footer className="py-4 border-t">
-        <div className="flex content-center justify-between">
+        <div className="flex md:px-4 content-center justify-between">
           <div>
             <Link to="/">
               <Logo width="160" height="30" />
