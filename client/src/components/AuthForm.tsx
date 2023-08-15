@@ -47,6 +47,11 @@ export default function AuthForm({ action, onSignIn }: AuthFormProps) {
     }
   }
 
+  function handleGuestLogin() {
+    setUsernameInput('user');
+    setPasswordInput('password');
+  }
+
   const alternatePath = action === 'sign-up' ? '/sign-in' : '/sign-up';
   const alternateText = action === 'sign-up' ? 'Log In' : 'Sign Up';
   const currentText = action === 'sign-in' ? 'Log In' : 'Sign Up';
@@ -90,7 +95,15 @@ export default function AuthForm({ action, onSignIn }: AuthFormProps) {
             onChange={(e) => setPasswordInput(e.target.value)}
           />
         </div>
-        <Button type="submit" buttonStyle="primary" text={buttonText} />
+        <div className="flex justify-between w-full">
+          <Button type="submit" buttonStyle="primary" text={buttonText} />
+          <button
+            onClick={handleGuestLogin}
+            type="submit"
+            className="text-sm text-stone-500 hover:text-stone-700 transition-colors">
+            Guest Login
+          </button>
+        </div>
         <>
           {error && (
             <div style={{ color: 'red' }}>
